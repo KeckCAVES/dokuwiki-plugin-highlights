@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////////////////
+// HIGHLIGHTS
+//
+
+.kc-highlights {
+  width: 40em;
+  height: 14em;
+  margin: auto;
+  padding: 0;
+  border-top: 0.5em solid __background_alt__;
+}
+//.kc-highlights-left {
+//  float: left;
+//  height: 10em;
+//}
+//.kc-highlights-right {
+//  float: right;
+//  height: 10em;
+//}
+
+.kc-highlights-nav {
+  margin: 0 auto;
+  padding: 0.5em 0;
+  background: __background_alt__;
+  text-align: center;
+}
+.kc-highlights-nav a {
+  padding: 0 1em;
+}
+.kc-highlights-nav .activeSlide {
+  background: __background_neu__;
+}
+
+.kc-highlights-view {
+  width: 40em;
+  height: 10em;
+  margin: 0 auto;
+}
+.kc-highlights-view .slide {
+  width: 40em;
+  height: 10em;
+  margin: 1em 0;
+  padding: 0;
+  background: __background__;
+}
+.kc-highlights-view .slide a,
+.kc-highlights-view .slide a:visited,
+.kc-highlights-view .slide a:link {
+  color: __text__ !important;
+}
+.kc-highlights-view .slide img {
+  float: right;
+  max-width: 20em;
+  max-height: 8em;
+  margin: 0 0 0 1em;
+}

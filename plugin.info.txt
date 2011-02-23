@@ -1,0 +1,7 @@
+base   highlights
+author Braden Pellett
+email  bpellett@ucdavis.edu
+date   development
+name   Highlights box
+desc   Provides syntax to create a highlights box that cycles between a set of highlighted items.
+url    https://github.com/KeckCAVES/dokuwiki-plugin-highlights
