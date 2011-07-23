@@ -36,10 +36,10 @@ class syntax_plugin_highlights_highlights extends DokuWiki_Syntax_Plugin {
             case DOKU_LEXER_ENTER: // a pattern set by addEntryPattern()
                 ++$this->_id;
                 preg_match($pattern, $match, $matches);
-                return array($state,$this->_id,$matches[1],$matches[2]);
+                return array($state,$this->_id,$this->_handle_link($matches[1]),$matches[2]);
             case DOKU_LEXER_MATCHED: // a pattern set by addPattern()
                 preg_match($pattern, $match, $matches);
-                return array($state,$matches[1],$matches[2]);
+                return array($state,$this->_handle_link($matches[1]),$matches[2]);
             case DOKU_LEXER_SPECIAL: // a pattern set by addSpecialPattern()
                 return array($state);
             case DOKU_LEXER_UNMATCHED: // ordinary text encountered within the plugin's syntax mode which doesn't match any pattern
@@ -54,21 +54,21 @@ class syntax_plugin_highlights_highlights extends DokuWiki_Syntax_Plugin {
         if($mode == 'xhtml'){
             switch ($data[0]) {
                 case DOKU_LEXER_ENTER:
-                    list(,$id,$page,$image) = $data;
+                    list(,$id,$url,$image) = $data;
                     $renderer->doc .= '<div class="kc-highlights">';
 //                    $renderer->doc .= '<div class="kc-highlights-left">L</div>';
 //                    $renderer->doc .= '<div class="kc-highlights-right">R</div>';
                     $renderer->doc .= '<div class="kc-highlights-view" id="kc-highlights-view'.$id.'">';
                     $renderer->doc .= '<p class="slide">';
-                    $renderer->doc .= '<a href="'.wl($page).'"><img src="'.ml($image).'"></img></a>';
-                    $renderer->doc .= '<a href="'.wl($page).'">';
+                    $renderer->doc .= '<a href="'.$url.'"><img src="'.ml($image).'"></img></a>';
+                    $renderer->doc .= '<a href="'.$url.'">';
                     break;
                 case DOKU_LEXER_MATCHED:
-                    list(,$page,$image) = $data;
+                    list(,$url,$image) = $data;
                     $renderer->doc .= '</a></p>';
                     $renderer->doc .= '<p class="slide">';
-                    $renderer->doc .= '<a href="'.wl($page).'"><img src="'.ml($image).'"></img></a>';
-                    $renderer->doc .= '<a href="'.wl($page).'">';
+                    $renderer->doc .= '<a href="'.$url.'"><img src="'.ml($image).'"></img></a>';
+                    $renderer->doc .= '<a href="'.$url.'">';
                     break;
                 case DOKU_LEXER_SPECIAL:
                     break;
@@ -99,4 +99,14 @@ class syntax_plugin_highlights_highlights extends DokuWiki_Syntax_Plugin {
         }
         return false;
     }
+
+    function _handle_link($link) {
+        if(substr($link,0,7)=='http://') {
+          $url = $link;
+        } else {
+          $url = wl($link);
+        }
+        return $url;
+    }
+
 }
