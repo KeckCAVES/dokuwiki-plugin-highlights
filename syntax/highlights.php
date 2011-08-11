@@ -89,6 +89,8 @@ class syntax_plugin_highlights_highlights extends DokuWiki_Syntax_Plugin {
     if(substr($link,0,7)=='http://') {
       $url = $link;
     } else {
+      global $ID;
+      resolve_pageid(getNS($ID), $link, $exists);
       $url = wl($link);
     }
     return $url;
